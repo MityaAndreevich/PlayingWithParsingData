@@ -17,6 +17,7 @@
 		5F025F6826FF6B9B004E4DD7 /* UserActionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F025F6726FF6B9B004E4DD7 /* UserActionCell.swift */; };
 		5F025F6A26FF6C50004E4DD7 /* CoursesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F025F6926FF6C50004E4DD7 /* CoursesViewController.swift */; };
 		5F025F6C26FF6C8C004E4DD7 /* CoursesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F025F6B26FF6C8C004E4DD7 /* CoursesCell.swift */; };
+		5F025F7026FFA747004E4DD7 /* Course.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F025F6F26FFA747004E4DD7 /* Course.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +33,7 @@
 		5F025F6726FF6B9B004E4DD7 /* UserActionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserActionCell.swift; sourceTree = "<group>"; };
 		5F025F6926FF6C50004E4DD7 /* CoursesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoursesViewController.swift; sourceTree = "<group>"; };
 		5F025F6B26FF6C8C004E4DD7 /* CoursesCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoursesCell.swift; sourceTree = "<group>"; };
+		5F025F6F26FFA747004E4DD7 /* Course.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Course.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -82,6 +84,7 @@
 				5F025F6726FF6B9B004E4DD7 /* UserActionCell.swift */,
 				5F025F6926FF6C50004E4DD7 /* CoursesViewController.swift */,
 				5F025F6B26FF6C8C004E4DD7 /* CoursesCell.swift */,
+				5F025F6F26FFA747004E4DD7 /* Course.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -166,6 +169,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5F025F7026FFA747004E4DD7 /* Course.swift in Sources */,
 				5F025F6826FF6B9B004E4DD7 /* UserActionCell.swift in Sources */,
 				5F025F5626FE3297004E4DD7 /* ImageViewController.swift in Sources */,
 				5F025F5226FE3297004E4DD7 /* AppDelegate.swift in Sources */,
