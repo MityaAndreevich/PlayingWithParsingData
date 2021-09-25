@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  ImageViewController.swift
 //  PlayingWithParsingData
 //
 //  Created by Dmitry Logachev on 24.09.2021.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class ImageViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
