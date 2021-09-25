@@ -13,17 +13,4 @@ class CoursesCell: UITableViewCell {
     @IBOutlet weak var coursesName: UILabel!
     @IBOutlet weak var coursesLessons: UILabel!
     @IBOutlet weak var coursesTests: UILabel!
-    
-    
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
-    }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
-    }
-
 }
