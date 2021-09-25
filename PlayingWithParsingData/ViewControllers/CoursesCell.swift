@@ -8,7 +8,13 @@
 import UIKit
 
 class CoursesCell: UITableViewCell {
-
+    @IBOutlet weak var coursesImage: UIImageView!
+    
+    @IBOutlet weak var coursesName: UILabel!
+    @IBOutlet weak var coursesLessons: UILabel!
+    @IBOutlet weak var coursesTests: UILabel!
+    
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
