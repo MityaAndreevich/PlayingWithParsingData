@@ -35,6 +35,10 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="AMW-r2-e9V"/>
+                    <connections>
+                        <outlet property="activityIndicator" destination="gY4-mM-UXa" id="2KX-CJ-OcZ"/>
+                        <outlet property="imageView" destination="6GJ-n9-l6T" id="uBc-OE-4uH"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5UA-4D-uBt" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
