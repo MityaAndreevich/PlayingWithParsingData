@@ -60,35 +60,8 @@ class MainViewController: UICollectionViewController {
         case .ourCourses: performSegue(withIdentifier: "showCourses", sender: nil)
         }
     }
-    /*
-    // Uncomment this method to specify if the specified item should be highlighted during tracking
-    override func collectionView(_ collectionView: UICollectionView, shouldHighlightItemAt indexPath: IndexPath) -> Bool {
-        return true
-    }
-    */
 
-    /*
-    // Uncomment this method to specify if the specified item should be selected
-    override func collectionView(_ collectionView: UICollectionView, shouldSelectItemAt indexPath: IndexPath) -> Bool {
-        return true
-    }
-    */
-
-    /*
-    // Uncomment these methods to specify if an action menu should be displayed for the specified item, and react to actions performed on the item
-    override func collectionView(_ collectionView: UICollectionView, shouldShowMenuForItemAt indexPath: IndexPath) -> Bool {
-        return false
-    }
-
-    override func collectionView(_ collectionView: UICollectionView, canPerformAction action: Selector, forItemAt indexPath: IndexPath, withSender sender: Any?) -> Bool {
-        return false
-    }
-
-    override func collectionView(_ collectionView: UICollectionView, performAction action: Selector, forItemAt indexPath: IndexPath, withSender sender: Any?) {
-    
-    }
-    */
-    
+      
     private func successAlert() {
         DispatchQueue.main.async {
             let alert = UIAlertController(
@@ -121,19 +94,51 @@ class MainViewController: UICollectionViewController {
 //MARK: - Networking
 extension MainViewController {
     private func exampleOneButtonPressed() {
+        guard let url = URL(string: Link.exampleOne.rawValue) else { return }
         
+        URLSession.shared.dataTask(with: url) { data, _, error in
+            guard let data = data else {
+                print(error?.localizedDescription ?? "No error description")
+                return
+            }
+            
+            do {
+                let course = try JSONDecoder().decode(Course.self, from: data)
+                print(course)
+                self.successAlert()
+            } catch let error {
+                print(error.localizedDescription)
+                self.failedAlert()
+            }
+        }.resume()
     }
     
     private func exampleTwoButtonPressed() {
+        guard let url = URL(string: Link.exampleTwo.rawValue) else { return }
         
+        URLSession.shared.dataTask(with: url) { data, _, error in
+            guard let data = data else {
+                print(error?.localizedDescription ?? "No error description")
+                return
+            }
+            
+            do {
+                let courses = try JSONDecoder().decode([Course].self, from: data)
+                print(courses)
+                self.successAlert()
+            } catch let error {
+                print(error.localizedDescription)
+                self.failedAlert()
+            }
+        }.resume()
     }
     
     private func exampleThreeButtonPressed() {
-        
+        guard let url = URL(string: Link.exampleThree.rawValue) else { return }
     }
     
     private func exampleFourButtonPressed() {
-        
+        guard let url = URL(string: Link.exampleFour.rawValue) else { return }
     }
 }
 
