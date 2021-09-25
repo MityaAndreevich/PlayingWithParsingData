@@ -21,7 +21,7 @@
         <!--Main View Controller-->
         <scene sceneID="0ca-HT-Wwz">
             <objects>
-                <collectionViewController id="8IZ-da-esk" sceneMemberID="viewController">
+                <collectionViewController id="8IZ-da-esk" customClass="MainViewController" customModule="PlayingWithParsingData" customModuleProvider="target" sceneMemberID="viewController">
                     <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="Kd7-4i-ITh">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -58,6 +58,9 @@
                                         <integer key="value" value="15"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <outlet property="userActionLabel" destination="sWh-sa-kGX" id="zf0-Zg-mCZ"/>
+                                </connections>
                             </collectionViewCell>
                         </cells>
                         <connections>
@@ -67,8 +70,8 @@
                     </collectionView>
                     <navigationItem key="navigationItem" title="Main View Controller" id="LEU-1v-Rh4"/>
                     <connections>
-                        <segue destination="BYZ-38-t0r" kind="show" id="8yw-vG-ZDO"/>
-                        <segue destination="oiV-Hn-fb1" kind="show" id="WmF-my-tbx"/>
+                        <segue destination="BYZ-38-t0r" kind="show" identifier="showImage" id="8yw-vG-ZDO"/>
+                        <segue destination="oiV-Hn-fb1" kind="show" identifier="showCourses" id="WmF-my-tbx"/>
                     </connections>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="G2p-1n-3Wz" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

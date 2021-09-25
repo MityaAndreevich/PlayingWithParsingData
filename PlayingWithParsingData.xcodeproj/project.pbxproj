@@ -66,17 +66,33 @@
 			children = (
 				5F025F5126FE3297004E4DD7 /* AppDelegate.swift */,
 				5F025F5326FE3297004E4DD7 /* SceneDelegate.swift */,
-				5F025F5526FE3297004E4DD7 /* ImageViewController.swift */,
-				5F025F5726FE3297004E4DD7 /* Main.storyboard */,
+				5F025F6D26FF706E004E4DD7 /* ViewControllers */,
+				5F025F6E26FF7089004E4DD7 /* Screens */,
 				5F025F5A26FE3298004E4DD7 /* Assets.xcassets */,
-				5F025F5C26FE3298004E4DD7 /* LaunchScreen.storyboard */,
 				5F025F5F26FE3298004E4DD7 /* Info.plist */,
+			);
+			path = PlayingWithParsingData;
+			sourceTree = "<group>";
+		};
+		5F025F6D26FF706E004E4DD7 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				5F025F5526FE3297004E4DD7 /* ImageViewController.swift */,
 				5F025F6526FF6190004E4DD7 /* MainViewController.swift */,
 				5F025F6726FF6B9B004E4DD7 /* UserActionCell.swift */,
 				5F025F6926FF6C50004E4DD7 /* CoursesViewController.swift */,
 				5F025F6B26FF6C8C004E4DD7 /* CoursesCell.swift */,
 			);
-			path = PlayingWithParsingData;
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		5F025F6E26FF7089004E4DD7 /* Screens */ = {
+			isa = PBXGroup;
+			children = (
+				5F025F5726FE3297004E4DD7 /* Main.storyboard */,
+				5F025F5C26FE3298004E4DD7 /* LaunchScreen.storyboard */,
+			);
+			path = Screens;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
