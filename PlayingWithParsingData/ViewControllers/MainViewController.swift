@@ -15,41 +15,51 @@ enum Link: String {
     case exampleFour = "https://swiftbook.ru//wp-content/uploads/api/api_missing_or_wrong_fields"
 }
 
+enum UserAction: String, CaseIterable {
+    case downLoadImage = "Download Image"
+    case exampleOne = "Example One"
+    case exampleTwo = "Example Two"
+    case exampleThree = "Example Three"
+    case exampleFour = "Example Four"
+    case ourCourses = "Our Courses"
+}
+
 class MainViewController: UICollectionViewController {
+    
+    let userActions = UserAction.allCases
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-      
     }
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using [segue destinationViewController].
-        // Pass the selected object to the new view controller.
-    }
-    */
 
     // MARK: UICollectionViewDataSource
 
-
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        1
+        userActions.count
     }
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! UserActionCell
     
-       
+        cell.userActionLabel.text = userActions[indexPath.item].rawValue
     
         return cell
     }
 
     // MARK: UICollectionViewDelegate
-
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let userAction = userActions[indexPath.item]
+        
+        switch userAction {
+        case .downLoadImage: performSegue(withIdentifier: "showImage", sender: nil)
+        case .exampleOne: exampleOneButtonPressed()
+        case .exampleTwo: exampleTwoButtonPressed()
+        case .exampleThree: exampleThreeButtonPressed()
+        case .exampleFour: exampleFourButtonPressed()
+        case .ourCourses: performSegue(withIdentifier: "showCourses", sender: nil)
+        }
+    }
     /*
     // Uncomment this method to specify if the specified item should be highlighted during tracking
     override func collectionView(_ collectionView: UICollectionView, shouldHighlightItemAt indexPath: IndexPath) -> Bool {
