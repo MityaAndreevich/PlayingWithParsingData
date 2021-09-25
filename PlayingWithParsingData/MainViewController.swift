@@ -15,8 +15,6 @@ enum Link: String {
     case exampleFour = "https://swiftbook.ru//wp-content/uploads/api/api_missing_or_wrong_fields"
 }
 
-private let reuseIdentifier = "Cell"
-
 class MainViewController: UICollectionViewController {
 
     override func viewDidLoad() {
@@ -26,7 +24,7 @@ class MainViewController: UICollectionViewController {
         // self.clearsSelectionOnViewWillAppear = false
 
         // Register cell classes
-        self.collectionView!.register(UICollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
+        self.collectionView!.register(UICollectionViewCell.self, forCellWithReuseIdentifier: "cell")
 
         // Do any additional setup after loading the view.
     }
@@ -55,7 +53,7 @@ class MainViewController: UICollectionViewController {
     }
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath)
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath)
     
         // Configure the cell
     
@@ -92,5 +90,51 @@ class MainViewController: UICollectionViewController {
     
     }
     */
+    
+    private func successAlert() {
+        DispatchQueue.main.async {
+            let alert = UIAlertController(
+                title: "Success",
+                message: "You can see the results in debug area",
+                preferredStyle: .alert
+            )
+            
+            let okAction = UIAlertAction(title: "Ok", style: .default)
+            alert.addAction(okAction)
+            self.present(alert, animated: true)
+        }
+    }
+    
+    private func failedAlert() {
+        DispatchQueue.main.async {
+            let alert = UIAlertController(
+                title: "Failed",
+                message: "You can see the results in debug area",
+                preferredStyle: .alert
+            )
+            
+            let okAction = UIAlertAction(title: "Ok", style: .default)
+            alert.addAction(okAction)
+            self.present(alert, animated: true)
+        }
+    }
+}
 
+//MARK: - Networking
+extension MainViewController {
+    private func exampleOneButtonPressed() {
+        
+    }
+    
+    private func exampleTwoButtonPressed() {
+        
+    }
+    
+    private func exampleThreeButtonPressed() {
+        
+    }
+    
+    private func exampleFourButtonPressed() {
+        
+    }
 }
