@@ -54,6 +54,13 @@ class MainViewController: UICollectionViewController {
         case .ourCourses: performSegue(withIdentifier: "showCourses", sender: nil)
         }
     }
+    // MARK: - Navigation
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "showCourses" {
+            guard let coursesVC = segue.destination as? CoursesViewController else { return }
+            coursesVC.fetchCourses()
+        }
+    }
 
     private func successAlert() {
         DispatchQueue.main.async {
