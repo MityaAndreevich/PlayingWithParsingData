@@ -28,13 +28,7 @@ class MainViewController: UICollectionViewController {
     
     let userActions = UserAction.allCases
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-    }
-
     // MARK: UICollectionViewDataSource
-
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         userActions.count
     }
@@ -61,7 +55,6 @@ class MainViewController: UICollectionViewController {
         }
     }
 
-      
     private func successAlert() {
         DispatchQueue.main.async {
             let alert = UIAlertController(
@@ -107,10 +100,12 @@ extension MainViewController {
                 print(course)
                 self.successAlert()
             } catch let error {
-                print(error.localizedDescription)
                 self.failedAlert()
+                print(error.localizedDescription)
             }
+            
         }.resume()
+        
     }
     
     private func exampleTwoButtonPressed() {
@@ -135,10 +130,44 @@ extension MainViewController {
     
     private func exampleThreeButtonPressed() {
         guard let url = URL(string: Link.exampleThree.rawValue) else { return }
+        
+        URLSession.shared.dataTask(with: url) { data, _, error in
+            guard let data = data else {
+                print(error?.localizedDescription ?? "No error description")
+                return
+            }
+            
+            do {
+                let websiteDescription = try JSONDecoder().decode(WebsiteDescription.self, from: data)
+                print(websiteDescription)
+                self.successAlert()
+            } catch let error {
+                self.failedAlert()
+                print(error.localizedDescription)
+            }
+            
+        }.resume()
     }
     
     private func exampleFourButtonPressed() {
         guard let url = URL(string: Link.exampleFour.rawValue) else { return }
+        
+        URLSession.shared.dataTask(with: url) { data, _, error in
+            guard let data = data else {
+                print(error?.localizedDescription ?? "No error description")
+                return
+            }
+            
+            do {
+                let websiteDescription = try JSONDecoder().decode(WebsiteDescription.self, from: data)
+                print(websiteDescription)
+                self.successAlert()
+            } catch let error {
+                self.failedAlert()
+                print(error.localizedDescription)
+            }
+            
+        }.resume()
     }
 }
 
