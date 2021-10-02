@@ -10,6 +10,7 @@ import UIKit
 class CoursesViewController: UITableViewController {
     
     private var courses: [Course] = []
+    //private var coursesV2: [CourseV2] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()

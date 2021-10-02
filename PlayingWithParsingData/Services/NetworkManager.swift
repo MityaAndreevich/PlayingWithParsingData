@@ -45,7 +45,7 @@ class NetworkManager {
         }
     }
     
-    func fetch<T: Decodable>(dataType: T.Type, from url: String, comletion: @escaping(Result<T, NetworkError>) -> Void) {
+    func fetch<T: Decodable>(dataType: T.Type, from url: String, convertFromSnakeCase: Bool = true, comletion: @escaping(Result<T, NetworkError>) -> Void) {
         guard let url = URL(string: url) else {
             comletion(.failure(.invalidURL))
             return
@@ -57,7 +57,9 @@ class NetworkManager {
                 return
             }
             do {
-                let type = try JSONDecoder().decode(T.self, from: data)
+                let decoder = JSONDecoder()
+                decoder.keyDecodingStrategy = .convertFromSnakeCase
+                let type = try decoder.decode(T.self, from: data)
                 DispatchQueue.main.async {
                     comletion(.success(type))
                 }
