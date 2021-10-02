@@ -49,6 +49,18 @@ extension CoursesViewController {
             }
         }.resume()
     }
+    
+    func fetchCoursesV2() {
+        
+    }
+    
+    func alamofireGetButtonPressed() {
+        
+    }
+    
+    func alamofirePostButtonPressed() {
+        
+    }
 }
 
 

@@ -98,6 +98,9 @@
                     <connections>
                         <segue destination="oiV-Hn-fb1" kind="show" identifier="showCourses" id="WmF-my-tbx"/>
                         <segue destination="oL5-ij-acn" kind="show" identifier="showImage" id="b9m-T8-IFO"/>
+                        <segue destination="oiV-Hn-fb1" kind="show" identifier="showCoursesV2" id="05E-yw-6nw"/>
+                        <segue destination="oiV-Hn-fb1" kind="show" identifier="alamofireGet" id="nkh-Qd-t0z"/>
+                        <segue destination="oiV-Hn-fb1" kind="show" identifier="alamofirePost" id="bIZ-QO-06Z"/>
                     </connections>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="G2p-1n-3Wz" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -182,6 +185,7 @@
                             <outlet property="delegate" destination="oiV-Hn-fb1" id="ZZj-la-iAV"/>
                         </connections>
                     </tableView>
+                    <navigationItem key="navigationItem" id="JSC-Ub-ygn"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bLI-JV-Kag" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -206,6 +210,9 @@
             <point key="canvasLocation" x="100.00000000000001" y="247.76785714285714"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="bIZ-QO-06Z"/>
+    </inferredMetricsTieBreakers>
     <resources>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

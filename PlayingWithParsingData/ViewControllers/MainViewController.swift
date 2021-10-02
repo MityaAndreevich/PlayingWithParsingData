@@ -7,14 +7,6 @@
 
 import UIKit
 
-enum Link: String {
-    case imageUrl = "https://applelives.com/wp-content/uploads/2016/03/iPhone-SE-11.jpeg"
-    case exampleOne = "https://swiftbook.ru//wp-content/uploads/api/api_course"
-    case exampleTwo = "https://swiftbook.ru//wp-content/uploads/api/api_courses"
-    case exampleThree = "https://swiftbook.ru//wp-content/uploads/api/api_website_description"
-    case exampleFour = "https://swiftbook.ru//wp-content/uploads/api/api_missing_or_wrong_fields"
-}
-
 enum UserAction: String, CaseIterable {
     case downLoadImage = "Download Image"
     case exampleOne = "Example One"
@@ -22,7 +14,12 @@ enum UserAction: String, CaseIterable {
     case exampleThree = "Example Three"
     case exampleFour = "Example Four"
     case ourCourses = "Our Courses"
-}
+    case ourCoursesV2 = "Capital to Lowcase"
+    case postRequestWithDict = "POST RQST with Dict"
+    case postRequestWithModel = "POST RQST with Model"
+    case alamofireGet = "Alamofire GET"
+    case alamofirePost = "Alamofire POST"
+    }
 
 class MainViewController: UICollectionViewController {
     
@@ -52,13 +49,24 @@ class MainViewController: UICollectionViewController {
         case .exampleThree: exampleThreeButtonPressed()
         case .exampleFour: exampleFourButtonPressed()
         case .ourCourses: performSegue(withIdentifier: "showCourses", sender: nil)
+        case .ourCoursesV2: performSegue(withIdentifier: "showCoursesV2", sender: nil)
+        case .postRequestWithDict: postRequestWithDict()
+        case .postRequestWithModel: postRequestWithModel()
+        case .alamofireGet: performSegue(withIdentifier: "alamofireGet", sender: nil)
+        case .alamofirePost: performSegue(withIdentifier: "alamofirePost", sender: nil)
         }
     }
     // MARK: - Navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "showCourses" {
+        if segue.identifier == "showImage" {
             guard let coursesVC = segue.destination as? CoursesViewController else { return }
-            coursesVC.fetchCourses()
+            switch segue.identifier {
+            case "showCourses": coursesVC.fetchCourses()
+            case "showCoursesV2": coursesVC.fetchCoursesV2()
+            case "alamofireGet": coursesVC.alamofireGetButtonPressed()
+            case "alamofirePost": coursesVC.alamofirePostButtonPressed()
+            default: break
+            }
         }
     }
     
@@ -175,6 +183,14 @@ extension MainViewController {
             }
             
         }.resume()
+    }
+    
+    private func postRequestWithDict() {
+        
+    }
+    
+    private func postRequestWithModel() {
+        
     }
 }
 
