@@ -33,7 +33,8 @@ class MainViewController: UICollectionViewController {
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! UserActionCell
         
-        cell.userActionLabel.text = userActions[indexPath.item].rawValue
+        let userAction = userActions[indexPath.item]
+        cell.userActionLabel.text = userAction.rawValue
         
         return cell
     }
@@ -58,8 +59,8 @@ class MainViewController: UICollectionViewController {
     }
     // MARK: - Navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "showImage" {
-            guard let coursesVC = segue.destination as? CoursesViewController else { return }
+        if segue.identifier != "showImage" {
+            let coursesVC = segue.destination as! CoursesViewController
             switch segue.identifier {
             case "showCourses": coursesVC.fetchCourses()
             case "showCoursesV2": coursesVC.fetchCoursesV2()
