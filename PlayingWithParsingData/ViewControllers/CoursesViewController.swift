@@ -31,23 +31,15 @@ class CoursesViewController: UITableViewController {
     // MARK: - Networking
 extension CoursesViewController {
     func fetchCourses() {
-        guard let url = URL(string: Link.exampleTwo.rawValue) else { return }
-        
-        URLSession.shared.dataTask(with: url) { data, _, error in
-            guard let data = data else {
-                print(error?.localizedDescription ?? "No error description")
-                return
+        NetworkManager.shared.fetch(dataType: [Course].self, from: Link.exampleTwo.rawValue) { result in
+            switch result {
+            case .success(let courses):
+                self.courses = courses
+                self.tableView.reloadData()
+            case .failure(let error):
+                print(error)
             }
-            
-            do {
-                self.courses = try JSONDecoder().decode([Course].self, from: data)
-                DispatchQueue.main.async {
-                    self.tableView.reloadData()
-                }
-            } catch let error {
-                print(error.localizedDescription)
-            }
-        }.resume()
+        }
     }
     
     func fetchCoursesV2() {

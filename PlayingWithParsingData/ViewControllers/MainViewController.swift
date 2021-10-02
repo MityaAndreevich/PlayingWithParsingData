@@ -102,87 +102,57 @@ class MainViewController: UICollectionViewController {
 //MARK: - Networking
 extension MainViewController {
     private func exampleOneButtonPressed() {
-        guard let url = URL(string: Link.exampleOne.rawValue) else { return }
-        
-        URLSession.shared.dataTask(with: url) { data, _, error in
-            guard let data = data else {
-                print(error?.localizedDescription ?? "No error description")
-                return
-            }
-            
-            do {
-                let course = try JSONDecoder().decode(Course.self, from: data)
-                print(course)
+        NetworkManager.shared.fetch(dataType: Course.self, from: Link.exampleOne.rawValue) { result in
+            switch result {
+            case .success(let course):
                 self.successAlert()
-            } catch let error {
+                print(course)
+            case .failure(let error):
+                print(error)
                 self.failedAlert()
-                print(error.localizedDescription)
             }
-            
-        }.resume()
-        
+        }
     }
     
     private func exampleTwoButtonPressed() {
-        guard let url = URL(string: Link.exampleTwo.rawValue) else { return }
-        
-        URLSession.shared.dataTask(with: url) { data, _, error in
-            guard let data = data else {
-                print(error?.localizedDescription ?? "No error description")
-                return
-            }
-            
-            do {
-                let courses = try JSONDecoder().decode([Course].self, from: data)
-                print(courses)
+        NetworkManager.shared.fetch(dataType: [Course].self, from: Link.exampleTwo.rawValue) { result in
+            switch result {
+            case .success(let courses):
                 self.successAlert()
-            } catch let error {
-                print(error.localizedDescription)
+                for course in courses {
+                    print("Courses: \(course.name ?? "")")
+                }
+            case .failure(let error):
+                print(error)
                 self.failedAlert()
             }
-        }.resume()
+        }
     }
     
     private func exampleThreeButtonPressed() {
-        guard let url = URL(string: Link.exampleThree.rawValue) else { return }
-        
-        URLSession.shared.dataTask(with: url) { data, _, error in
-            guard let data = data else {
-                print(error?.localizedDescription ?? "No error description")
-                return
-            }
-            
-            do {
-                let websiteDescription = try JSONDecoder().decode(WebsiteDescription.self, from: data)
-                print(websiteDescription)
+        NetworkManager.shared.fetch(dataType: WebsiteDescription.self, from: Link.exampleThree.rawValue) { result in
+            switch result {
+            case .success(let websiteDescription):
                 self.successAlert()
-            } catch let error {
+                print(websiteDescription)
+            case .failure(let error):
+                print(error)
                 self.failedAlert()
-                print(error.localizedDescription)
             }
-            
-        }.resume()
+        }
     }
     
     private func exampleFourButtonPressed() {
-        guard let url = URL(string: Link.exampleFour.rawValue) else { return }
-        
-        URLSession.shared.dataTask(with: url) { data, _, error in
-            guard let data = data else {
-                print(error?.localizedDescription ?? "No error description")
-                return
-            }
-            
-            do {
-                let websiteDescription = try JSONDecoder().decode(WebsiteDescription.self, from: data)
-                print(websiteDescription)
+        NetworkManager.shared.fetch(dataType: WebsiteDescription.self, from: Link.exampleFour.rawValue) { result in
+            switch result {
+            case .success(let websiteDescription):
                 self.successAlert()
-            } catch let error {
+                print(websiteDescription)
+            case .failure(let error):
+                print(error)
                 self.failedAlert()
-                print(error.localizedDescription)
             }
-            
-        }.resume()
+        }
     }
     
     private func postRequestWithDict() {
