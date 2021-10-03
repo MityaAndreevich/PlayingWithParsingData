@@ -27,4 +27,18 @@ class CoursesCell: UITableViewCell {
             }
         }
     }
+    
+    func configure(with courseV2: CourseV2) {
+        coursesName.text = courseV2.name
+        coursesLessons.text = "Number of lessons: \(courseV2.numberOfLessons ?? 0)"
+        coursesTests.text = "Number of tests: \(courseV2.numberOfTests ?? 0)"
+        NetworkManager.shared.fetchImage(from: courseV2.imageUrl) { result in
+            switch result {
+            case .success(let imageData):
+                self.coursesImage.image = UIImage(data: imageData)
+            case .failure(let error):
+                print(error)
+            }
+        }
+    }
 }

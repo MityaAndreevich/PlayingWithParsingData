@@ -10,7 +10,7 @@ import UIKit
 class CoursesViewController: UITableViewController {
     
     private var courses: [Course] = []
-    //private var coursesV2: [CourseV2] = []
+    private var coursesV2: [CourseV2] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -19,13 +19,19 @@ class CoursesViewController: UITableViewController {
 
     // MARK: - Table view data source
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        courses.count
+        courses.isEmpty ? coursesV2.count : courses.count
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! CoursesCell
-        let course = courses[indexPath.row]
-        cell.configure(with: course)
+        
+        if courses.isEmpty {
+            let courseV2 = coursesV2[indexPath.row]
+            cell.configure(with: courseV2)
+        } else {
+            let course = courses[indexPath.row]
+            cell.configure(with: course)
+        }
         return cell
     }
 }
@@ -44,9 +50,16 @@ extension CoursesViewController {
     }
     
     func fetchCoursesV2() {
-        
+        NetworkManager.shared.fetch(dataType: [CourseV2].self, from: Link.exampleFive.rawValue, convertFromSnakeCase: false) { result in
+            switch result {
+            case .success(let courses):
+                self.coursesV2 = courses
+                self.tableView.reloadData()
+            case .failure(let error):
+                print(error)
+            }
+        }
     }
-    
     func alamofireGetButtonPressed() {
         
     }
