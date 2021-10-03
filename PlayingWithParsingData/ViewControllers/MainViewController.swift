@@ -177,8 +177,25 @@ extension MainViewController {
     }
     
     private func postRequestWithModel() {
+        let course = CourseV3(
+            name: "Networking",
+            imageUrl: Link.courseImageURL.rawValue,
+            numberOfLessons: "10",
+            numberOfTests: "5"
+        )
+        NetworkManager.shared.postRequest(with: course, to: Link.postRequest.rawValue) { result in
+            switch result {
+            case .success(let course):
+                self.successAlert()
+                print(course)
+            case .failure(let error):
+                self.failedAlert()
+                print(error)
+            }
+        }
         
     }
+    
 }
 
 extension MainViewController: UICollectionViewDelegateFlowLayout {

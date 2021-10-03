@@ -26,6 +26,13 @@ struct CourseV2: Decodable {
     }
 }
 
+struct CourseV3: Codable {
+    let name : String
+    let imageUrl: String
+    let numberOfLessons: String
+    let numberOfTests: String
+}
+
 struct WebsiteDescription: Decodable {
     let courses: [Course]?
     let websiteDescription: String?
