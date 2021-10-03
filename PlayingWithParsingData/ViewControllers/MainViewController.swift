@@ -157,7 +157,23 @@ extension MainViewController {
     }
     
     private func postRequestWithDict() {
+        let course = [
+            "name": "Networking",
+            "imageUrl": "image url",
+            "numberOfLessons": "10",
+            "numberOfTests": "8"
+        ]
         
+        NetworkManager.shared.postRequest(with: course, to: Link.postRequest.rawValue) { result in
+            switch result {
+            case .success(let course):
+                self.successAlert()
+                print(course)
+            case .failure(let error):
+                self.failedAlert()
+                print(error)
+            }
+        }
     }
     
     private func postRequestWithModel() {
