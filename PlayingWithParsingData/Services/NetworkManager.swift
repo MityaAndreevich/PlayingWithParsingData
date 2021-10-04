@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import Alamofire
 
 enum Link: String {
     case imageUrl = "https://applelives.com/wp-content/uploads/2016/03/iPhone-SE-11.jpeg"
@@ -131,6 +132,22 @@ class NetworkManager {
                 completion(.failure(.decodingError))
             }
         }.resume()
+    }
+    
+    func fetchDataWithAlamofire(_ url: String, completion: @escaping(Result<[Course], NetworkError>) -> Void) {
+        AF.request(Link.exampleTwo.rawValue)
+            .validate()
+            .responseJSON { dataResponse in
+                switch dataResponse.result {
+                case .success(let value):
+                    let courses = Course.getCourses(from: value)
+                    DispatchQueue.main.async {
+                        completion(.success(courses))
+                    }
+                case .failure:
+                    completion(.failure(.decodingError))
+                }
+            }
     }
 }
 

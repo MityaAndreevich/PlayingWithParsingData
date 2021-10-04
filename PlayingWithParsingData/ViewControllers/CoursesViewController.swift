@@ -63,19 +63,16 @@ extension CoursesViewController {
         }
     }
     func alamofireGetButtonPressed() {
-        AF.request(Link.exampleTwo.rawValue)
-            .validate()
-            .responseJSON { dataResponse in
-                switch dataResponse.result {
-                case .success(let value):
-                    self.courses = Course.getCourses(from: value)
-                    DispatchQueue.main.async {
-                        self.tableView.reloadData()
-                    }
-                case .failure(let error):
-                    print(error)
-                }
+        NetworkManager.shared.fetchDataWithAlamofire(Link.exampleTwo.rawValue) { result in
+            switch result {
+            case .success(let courses):
+                self.courses = courses
+                self.tableView.reloadData()
+            case .failure(let error):
+                print(error)
             }
+        }
+        
     }
     
     func alamofirePostButtonPressed() {
