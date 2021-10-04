@@ -6,6 +6,8 @@
 //
 
 import UIKit
+import Alamofire
+import SystemConfiguration
 
 class CoursesViewController: UITableViewController {
     
@@ -61,7 +63,28 @@ extension CoursesViewController {
         }
     }
     func alamofireGetButtonPressed() {
-        
+        AF.request(Link.exampleTwo.rawValue)
+            .validate()
+            .responseJSON { dataResponse in
+                switch dataResponse.result {
+                case .success(let value):
+                    guard let coursesData = value as? [[String: Any]] else { return }
+                    for courseData in coursesData {
+                        let course = Course(
+                            name: courseData["name"] as? String,
+                            imageUrl: courseData["imageUrl"] as? String,
+                            numberOfLessons: courseData["number_of_lessons"] as? Int,
+                            numberOfTests: courseData["number_of_tests"] as? Int
+                        )
+                        self.courses.append(course)
+                    }
+                    DispatchQueue.main.async {
+                        self.tableView.reloadData()
+                    }
+                case .failure(let error):
+                    print(error)
+                }
+            }
     }
     
     func alamofirePostButtonPressed() {
