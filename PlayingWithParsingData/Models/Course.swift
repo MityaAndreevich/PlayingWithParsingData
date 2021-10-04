@@ -11,6 +11,13 @@ struct Course: Decodable {
     let numberOfLessons: Int?
     let numberOfTests: Int?
     
+    init(name: String, imageUrl: String, numberOfLessons: Int, numberOfTests: Int) {
+        self.name = name
+        self.imageUrl = imageUrl
+        self.numberOfLessons = numberOfLessons
+        self.numberOfTests = numberOfTests
+    }
+    
     init(courseData: [String: Any]) {
         name = courseData["name"] as? String
         imageUrl = courseData["imageUrl"] as? String

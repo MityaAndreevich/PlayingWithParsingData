@@ -76,7 +76,22 @@ extension CoursesViewController {
     }
     
     func alamofirePostButtonPressed() {
+        let course = CourseV3(
+            name: "Networking",
+            imageUrl: Link.courseImageURL.rawValue,
+            numberOfLessons: "10",
+            numberOfTests: "5"
+        )
         
+        NetworkManager.shared.postDataWithAlamofire(Link.postRequest.rawValue, data: course) { result in
+            switch result {
+            case .success(let course):
+                self.courses.append(course)
+                self.tableView.reloadData()
+            case .failure(let error):
+                print(error)
+            }
+        }
     }
 }
 

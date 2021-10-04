@@ -149,5 +149,26 @@ class NetworkManager {
                 }
             }
     }
+    
+    func postDataWithAlamofire(_ url: String, data: CourseV3, completion: @escaping(Result<Course, NetworkError>) -> Void) {
+        AF.request(url, method: .post, parameters: data)
+            .validate()
+            .responseDecodable(of: CourseV3.self) { dataResponse in
+                switch dataResponse.result {
+                case .success(let coursesV3):
+                    let course = Course(
+                        name: coursesV3.name,
+                        imageUrl: coursesV3.imageUrl,
+                        numberOfLessons: Int(coursesV3.numberOfLessons) ?? 0,
+                        numberOfTests: Int(coursesV3.numberOfTests) ?? 0
+                    )
+                    DispatchQueue.main.async {
+                        completion(.success(course))
+                    }
+                case .failure:
+                    completion(.failure(.decodingError))
+                }
+            }
+    }
 }
 
