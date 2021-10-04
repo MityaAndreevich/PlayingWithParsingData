@@ -20,12 +20,7 @@ struct Course: Decodable {
     
     static func getCourses(from value: Any) -> [Course] {
         guard let coursesData = value as? [[String: Any]] else { return [] }
-        var courses: [Course] = []
-        for courseData in coursesData {
-            let course = Course(courseData: courseData)
-            courses.append(course)
-        }
-        return courses
+        return coursesData.compactMap { Course(courseData: $0) }
     }
 }
 
